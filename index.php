@@ -32,7 +32,7 @@ require_once "api.php";
 
           <div class= "form-group">
             <label for="email">E-mail</label>
-            <input type= "text" class="form-control" name="email" id='email'> 
+            <input type= "email" class="form-control" name="email" id='email' required> 
           </div>
 
           <div class="form-group">
