@@ -54,7 +54,7 @@ $usuarioLogado = buscarUsuario($user_id); // Busca as informações do usuário 
           <td>
             <a class="btn btn-primary" href="editarUsuario.php?id=<?php echo $usuarioLogado['id'] ?>">Editar</a>
             <a class="btn btn-danger" href="excluirUsuario.php?id=<?php echo $usuarioLogado['id'] ?>">Excluir</a>
-            <a class="btn btn-danger" href="sair.php?id=<?php echo $usuarioLogado['id'] ?>">Sair</a>
+            <a class="btn btn-danger" href="sair.php?id=<?php echo $usuarioLogado['id'] ?>">LogOut</a>
           </td>
         </tr>
       </tbody>
