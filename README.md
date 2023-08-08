@@ -22,11 +22,12 @@
 - Uma página que exiba as informações do usuário logado (nome, email, etc.).
 - O usuário deve ser capaz de editar as informações do perfil (exceto o email).
 
-## Funcionalidades Extras: 
+### Funcionalidades Extras: 
+
 - Exibir hora consultando API externa de sua preferência
 
-
 ## Funcionalidades Opcionais:
+
 - Implemente a funcionalidade de "esqueci minha senha" para permitir que os usuários redefinam suas senhas através do envio de um link de redefinição para o email.
 - Adicione validações de entrada para garantir que os campos obrigatórios sejam preenchidos corretamente (por exemplo, um email válido, senha com pelo menos 8 caracteres, etc.).
 - Adicione uma funcionalidade de "logout" que encerre a sessão do usuário e redirecione para a página de login.
@@ -41,6 +42,6 @@
 
 ## Observações:
 
-- Você pode utilizar qualquer editor de código ou IDE que preferir.
-- Ao finalizar o prazo esperado, você pode compartilhar o código-fonte em um repositório público (GitHub, GitLab, etc.) e enviar o link, mesmo que não tenha finalizado o desafio. Após o envio combinamos para você demonstrar e explicar o sistema, desafios, facilidades, etc.
+- Pode utilizar qualquer editor de código ou IDE que preferir.
+- Ao finalizar o prazo esperado, você pode compartilhar o código-fonte em um repositório público (GitHub, GitLab, etc.) e enviar o link, mesmo que não tenha finalizado o desafio.
 
