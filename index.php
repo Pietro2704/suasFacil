@@ -45,7 +45,7 @@ require_once "api.php"; // Chama o arquivo onde a função de obter hora atual f
             <input type="password" class="form-control" name="confirm_password" id="confirm_password" required>
           </div>
 
-          <button type="submit" name="submit" class="btn btn-primary mb-2">Cadastrar</button>
+          <button type="submit" name="submit" class="btn btn-primary mb-2 form-control">Cadastrar</button>
           
         </form>
         <a href="login.php">Já possui conta?</a>

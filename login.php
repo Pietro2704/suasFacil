@@ -35,10 +35,19 @@ require_once "api.php"; // Chama o arquivo onde a função de obter hora atual f
             <input type= "password" class="form-control" name="password" id="password" required> 
           </div>
 
-          <button type="submit" name="submit" class="btn btn-primary mb-2">Entrar</button>
+          <button type="submit" name="submit" class="btn btn-primary mb-4 form-control">Entrar</button>
           
         </form>
-        <a href="index.php">Não possui conta?</a>
+        <div class="container">
+          <div class="row">
+              <div class="col-12">
+                  <div class="d-flex justify-content-around">
+                    <a href="index.php">Não possui conta?</a>
+                    <a href="esqueciSenha.php">Esqueci minha senha</a>
+                  </div>
+              </div>
+          </div>
+        </div>
       </div>
     </div>
   </div>
