@@ -2,7 +2,7 @@
 
 function conectarBanco(){ // Função que conecta ao Banco
 
-  $dbServer = "localhost"; // Servidor do banco
+  $dbServer = "localhost"; // Servidor
   $dbUser = "root"; // Usuário
   $dbPassword = ""; // Senha
   $dbName = "suasfacil"; // Banco

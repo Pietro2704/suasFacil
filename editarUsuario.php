@@ -1,33 +1,32 @@
 <?php
-include_once "comandos_SQL.php";
+include_once "comandos_SQL.php"; // Chama o arquivo onde as funções com comandos sql foram estabelecidos
 
 if (isset($_GET['id'])) { // Se o ID do usuário foi fornecido
 
-    $id = $_GET['id'];
+    $id = $_GET['id']; // Variavel ID é o id passado pela URL
     $usuario = buscarUsuario($id); // Obter os dados do usuário pelo ID
 
-    if (!$usuario) { // Verificar se o usuário existe
+    if (!$usuario) { // Se o usuário não existe
 
-        echo "Usuário não encontrado.";
-        exit();
+        echo "<script>alert('Usuário não encontrado.');</script>"; // exibe um alerta de erro
+        exit(); // Encerra a execução do script
 
     }
 
-    
     if ($_SERVER["REQUEST_METHOD"] == "POST") { // Se o formulário foi enviado
         
-        $usuario = $_POST["usuario"]; // Obter os dados do formulário
-        $senha = $_POST["password"]; //$email = $_POST["email"];
+        $usuario = $_POST["usuario"]; // Obtém o valor do campo 'usuario' do formulário
+        $senha = $_POST["password"]; // Obtém o valor do campo 'password' do formulário
         
         atualizarUsuario($id, $usuario, $senha); // Atualizar os dados do usuário no banco de dados
         echo "<script>window.location = 'perfil.php';</script>"; // Redirecionar para a página de listagem de usuários
-        exit();
+        exit(); // Encerra a execução do script
     }
 
 }else{
 
-    echo "ID do usuário não fornecido.";
-    exit();
+    echo "<script>alert('ID do usuário não fornecido.');</script>"; // exibe um alerta de erro
+    exit(); // Encerra a execução do script
 
 }
 ?>

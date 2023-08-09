@@ -1,12 +1,12 @@
 <?php
-include_once "comandos_SQL.php";
-require_once "api.php";
+require_once "conexao.php"; // Chama o arquivo onde a função de conexao ao banco foi estabelecida
+require_once "api.php"; // Chama o arquivo onde a função de obter hora atual foi estabelecida
 
 session_start(); // Inicia a sessão
 
-if (!isset($_SESSION['user_id'])) { // Caso o usuário não esteja autenticado, redireciona para a página de login
+if (!isset($_SESSION['user_id'])) { // Caso o usuário não esteja autenticado
     
-    header('Location: login.php');
+    header('Location: login.php'); // Redireciona para o login
     exit(); // Encerra a execução do script
 
 }

@@ -1,6 +1,6 @@
 <?php 
 require_once "conexao.php"; // Chama o arquivo onde a função de conexao ao banco foi estabelecida
-require_once "api.php";
+require_once "api.php"; // Chama o arquivo onde a função de obter hora atual foi estabelecida
 ?>
 
 <!DOCTYPE html>
@@ -45,7 +45,7 @@ require_once "api.php";
             <input type="password" class="form-control" name="confirm_password" id="confirm_password" required>
           </div>
 
-          <button type="submit" name="submit" class="btn btn-primary">Cadastrar</button>
+          <button type="submit" name="submit" class="btn btn-primary mb-2">Cadastrar</button>
           
         </form>
         <a href="login.php">Já possui conta?</a>
@@ -94,14 +94,13 @@ if(isset($_POST["submit"])){ // Quando 'submit' for clicado
   $newpassword = $_POST ["newpassword"]; // Obtém o valor do campo 'newpassword' do formulário
   $confirm_password = $_POST["confirm_password"]; // Obtém o valor do campo 'confirm_password' do formulário
   
-  if ($newpassword !== $confirm_password) { // Senha e confirmação de senha não coincidem
+  if ($newpassword !== $confirm_password) { // Se senha e confirmação de senha não coincidem
 
-    echo "<script>alert('A senha e a confirmação de senha não coincidem. Por favor, tente novamente.');</script>";
-
-  } else { // Senha e confirmação de senha coincidem, então você pode prosseguir com o cadastro
-    
-    criarUsuario($newusername, $newpassword, $email);
+    echo "<script>alert('A senha e a confirmação de senha não coincidem. Por favor, tente novamente.');</script>"; // exibe mensagem de erro
 
   }
+  
+  criarUsuario($newusername, $newpassword, $email); // Cria o usuario
+
 }
 ?>

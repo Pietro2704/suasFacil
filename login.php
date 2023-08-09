@@ -1,6 +1,6 @@
 <?php
 require_once "conexao.php"; // Chama o arquivo onde a função de conexao ao banco foi estabelecida
-require_once "api.php";
+require_once "api.php"; // Chama o arquivo onde a função de obter hora atual foi estabelecida
 ?>
 
 <!DOCTYPE html>
@@ -35,7 +35,7 @@ require_once "api.php";
             <input type= "password" class="form-control" name="password" id="password" required> 
           </div>
 
-          <button type="submit" name="submit" class="btn btn-primary">Entrar</button>
+          <button type="submit" name="submit" class="btn btn-primary mb-2">Entrar</button>
           
         </form>
         <a href="index.php">Não possui conta?</a>

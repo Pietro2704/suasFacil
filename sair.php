@@ -1,20 +1,20 @@
 <?php
-include_once "comandos_SQL.php";
+include_once "comandos_SQL.php"; // Chama o arquivo onde as funções com comandos sql foram estabelecidos
 
-if (isset($_GET['id'])) {
+if (isset($_GET['id'])) { // Se o ID do usuário foi fornecido
 
-    $id = $_GET['id'];
+    $id = $_GET['id']; // Variavel ID é o id passado pela URL
+    $usuario = buscarUsuario($id); // Obter os dados do usuário pelo ID
 
-    $usuario  = buscarUsuario($id);
+    if (!$usuario) { // Se o usuário não existe
 
-    if (!$usuario){
-
-        die("usuario inexistente");
+      die("usuario inexistente"); // Encerra a execução do script e exibe a mensagem de erro 
+          
+    }else{ // Senão
         
-    }else{
-        session_start();
-        session_destroy();
-        echo "<script>window.location = 'login.php';</script>";
+      session_start(); // Inicia a sessão
+      session_destroy(); // Destroi a sessão
+      echo "<script>window.location = 'login.php';</script>"; // Redireciona para o login
 
     }
 }

@@ -19,7 +19,7 @@ function buscarUsuario($id) { // Função para buscar um usuário específico pe
     $sql = "SELECT * FROM usuarios WHERE id = '$id'"; // Comando de consulta
     $usuario = $conn->query($sql); // Executa o comando de consulta
     
-    if ($usuario->num_rows > 0) { // Verifica se o usuário com o ID especificado foi encontrado
+    if ($usuario->num_rows > 0) { // Se o usuário com o ID especificado foi encontrado
         return $usuario->fetch_assoc(); // Retorna os dados do usuário como um array associativo
     }
     
@@ -28,40 +28,40 @@ function buscarUsuario($id) { // Função para buscar um usuário específico pe
 }
 
 
-function atualizarUsuario($id, $usuario, $senha){
+function atualizarUsuario($id, $usuario, $senha){ // Função para atualizar um usuário específico
 
-    $conn = conectarBanco();
-    $sql = "update usuarios set usuario = ?, senha = ? where id = ?";
+    $conn = conectarBanco(); // Conecta ao banco
+    $sql = "update usuarios set usuario = ?, senha = ? where id = ?"; // Comando de atualização
 
-    $smt = $conn->prepare($sql);
-    $smt->bind_param('ssi', $usuario, $senha, $id);
+    $smt = $conn->prepare($sql); // Prepara o comando para a execução
+    $smt->bind_param('ssi', $usuario, $senha, $id); // Associa valores aos parâmetros na consulta SQL preparada
 
-    if ($smt->execute()) {
+    if ($smt->execute()) {  // Se a atualização for bem-sucedida
 
-        echo "<script>alert('Dados atualizados com sucesso');</script>";
+        echo "<script>alert('Dados atualizados com sucesso');</script>"; // exibe um alerta de sucesso
 
-    } else {
+    } else { // Senão
 
-        echo "<script>alert('ERRO AO ATUALIZAR');</script>" . mysqli_error($conn);
+        echo "<script>alert('ERRO AO ATUALIZAR');</script>" . mysqli_error($conn); // exibe um alerta de erro
 
     }
 }
 
-function excluirUsuario($id){
+function excluirUsuario($id){ // Função para excluir um usuário específico
 
-    $conn = conectarBanco();
-    $sql = "delete from usuarios where id = ?";
+    $conn = conectarBanco(); // Conecta ao banco
+    $sql = "delete from usuarios where id = ?"; // Comando para deletar
 
-    $smt = $conn->prepare($sql);
-    $smt->bind_param("i", $id);
+    $smt = $conn->prepare($sql); // Prepara o comando para a execução
+    $smt->bind_param("i", $id); // Associa valores aos parâmetros na consulta SQL preparada
 
-    if ($smt->execute()) {
+    if ($smt->execute()) { // Se a atualização for bem-sucedida
 
-        echo "<script>alert('Usuario excluido');</script>";
+        echo "<script>alert('Usuario excluido');</script>"; // exibe um alerta de sucesso
 
     } else {
 
-        echo "<script>alert('ERRO AO EXCLUIR');</script>";
+        echo "<script>alert('ERRO AO EXCLUIR');</script>"; // exibe um alerta de erro
         
     }
 }
