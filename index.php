@@ -97,6 +97,7 @@ if(isset($_POST["submit"])){ // Quando 'submit' for clicado
   if ($newpassword !== $confirm_password) { // Se senha e confirmação de senha não coincidem
 
     echo "<script>alert('A senha e a confirmação de senha não coincidem. Por favor, tente novamente.');</script>"; // exibe mensagem de erro
+    exit();
 
   }
   

@@ -1,5 +1,6 @@
 <?php
 require_once "conexao.php"; // Chama o arquivo onde a função de conexao ao banco foi estabelecida
+include_once "comandos_SQL.php"; // Chama o arquivo onde as funções com comandos sql foram estabelecidos
 require_once "api.php"; // Chama o arquivo onde a função de obter hora atual foi estabelecida
 
 session_start(); // Inicia a sessão
