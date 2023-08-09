@@ -60,9 +60,7 @@ $usuarioLogado = buscarUsuario($user_id); // Busca as informações do usuário 
 
 <?php
 
-function redefinirSenha($newpassword,$usuario_id){
-
-
+function redefinirSenha($newpassword,$usuario_id){ // Função para redefinir senha precisa de uma senha e um id de usuario
 
   $conn = conectarBanco(); // Conecta ao banco
   $sql = "update usuarios set senha = '$newpassword' where id = '$usuario_id'"; // Comando de atualização
@@ -72,7 +70,7 @@ function redefinirSenha($newpassword,$usuario_id){
 
     session_destroy();
     echo "<script>alert('Dados atualizados com sucesso!!');</script>"; // exibe um alerta de sucesso
-    echo "<script>window.location = 'login.php';</script>";
+    echo "<script>window.location = 'login.php';</script>"; // Redireciona para o login
 
   }else{ // Senão
 
@@ -93,11 +91,11 @@ if(isset($_POST["submit"])){ // Quando 'submit' for clicado
   if ($newpassword !== $confirm_password) { // Se senha e confirmação de senha não coincidem
 
     echo "<script>alert('A senha e a confirmação de senha não coincidem. Por favor, tente novamente.');</script>"; // exibe mensagem de erro
-    exit();
+    exit(); // Encerra a execução do script
 
   }
 
-  redefinirSenha($newpassword,$usuario_id);
+  redefinirSenha($newpassword,$usuario_id); // Atualiza senha
 
 }
 ?>

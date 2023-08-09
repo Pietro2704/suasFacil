@@ -13,16 +13,6 @@ if (isset($_GET['id'])) { // Se o ID do usuário foi fornecido
 
     }
 
-    if ($_SERVER["REQUEST_METHOD"] == "POST") { // Se o formulário foi enviado
-        
-        $usuario = $_POST["usuario"]; // Obtém o valor do campo 'usuario' do formulário
-        $senha = $_POST["password"]; // Obtém o valor do campo 'password' do formulário
-        
-        atualizarUsuario($id, $usuario, $senha); // Atualizar os dados do usuário no banco de dados
-        echo "<script>window.location = 'perfil.php';</script>"; // Redirecionar para a página de listagem de usuários
-        exit(); // Encerra a execução do script
-    }
-
 }else{
 
     echo "<script>alert('ID do usuário não fornecido.');</script>"; // exibe um alerta de erro
@@ -72,3 +62,15 @@ if (isset($_GET['id'])) { // Se o ID do usuário foi fornecido
     
 </body>
 </html>
+<?php 
+if ($_SERVER["REQUEST_METHOD"] == "POST") { // Se o formulário foi enviado
+        
+    $usuario = $_POST["usuario"]; // Obtém o valor do campo 'usuario' do formulário
+    $senha = $_POST["password"]; // Obtém o valor do campo 'password' do formulário
+    
+    atualizarUsuario($id, $usuario, $senha); // Atualizar os dados do usuário no banco de dados
+    
+    echo "<script>window.location = 'perfil.php';</script>"; // Redirecionar para a página de listagem de usuários
+    exit(); // Encerra a execução do script
+}
+?>

@@ -46,7 +46,7 @@ require_once "api.php"; // Chama o arquivo onde a função de obter hora atual f
 
 <?php
 
-function esqueciSenha($username,$email){
+function esqueciSenha($username,$email){ // Função de esqueci senha precisa receber um usuario e um email
 
   $conn = conectarBanco(); // Conecta ao banco
   $sql = "select * from usuarios where usuario = '$username' and email = '$email' "; // Comando de consulta
@@ -71,7 +71,7 @@ if(isset($_POST["submit"])){ // Quando 'submit' for clicado
   $username = $_POST ["username"]; // Obtém o valor do campo 'newusername' do formulário
   $email = $_POST["email"]; // Obtém o valor do campo 'email' do formulário
 
-  esqueciSenha($username,$email);
+  esqueciSenha($username,$email); // confere usuario
 
 }
 ?>
