@@ -19,7 +19,7 @@ require_once "api.php"; // Chama o arquivo onde a função de obter hora atual f
     <div class= "row justify-content-center">
 
       <div class= "col-md-6">
-        <h1 class= "mt-5 mb-2">login</h1>
+        <h1 class= "mt-5 mb-2"><a href="adm.php" class="text-reset text-decoration-none">login</a></h1>
         <div class="relogio">
           <div id="hora" class= "mb-4"><?php echo obterHoraAtual(); ?></div>
         </div>
