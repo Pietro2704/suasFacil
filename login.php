@@ -1,5 +1,6 @@
 <?php
 require_once "conexao.php"; // Chama o arquivo onde a função de conexao ao banco foi estabelecida
+require_once "comandos_SQL.php"; // Chama o arquivo onde as funções com comandos sql foram estabelecidos
 require_once "api.php"; // Chama o arquivo onde a função de obter hora atual foi estabelecida
 ?>
 
@@ -56,28 +57,6 @@ require_once "api.php"; // Chama o arquivo onde a função de obter hora atual f
 
 <?php
 
-function autenticarUsuario($email,$password){ // Função para o Login precisa receber um usuario e uma senha
-
-  $conn = conectarBanco(); // Conecta ao banco
-  $sql = "select * from usuarios where email = '$email' and senha = '$password' "; // Comando de consulta
-  $resultado = $conn->query($sql); // Executa o comando de consulta
-  
-  if ($resultado->num_rows > 0) { // Se o Banco retornar alguma linha
-
-    $usuario = $resultado->fetch_assoc(); // Obtém os dados do usuário
-    session_start(); // Inicia uma sessão
-    $_SESSION['user_id'] = $usuario['id']; // Define o ID do usuário na sessão
-    
-    header('Location: perfil.php'); // Redireciona para a página dos usuarios
-
-  }else{ // Senão
-
-    echo "<script>alert('Usuario ou senha incorretos');</script>"; // Alerta que não encontrou o usuario
-
-  }
-}
-
-
 if(isset($_POST["submit"])){ // Quando 'submit' for clicado
 
   $email = $_POST["email"]; // Obtém o valor do campo 'username' do formulário
@@ -86,4 +65,5 @@ if(isset($_POST["submit"])){ // Quando 'submit' for clicado
   autenticarUsuario($email,$password); // Chama a função passando os valores do usuário e senha como argumentos
 
 }
+
 ?>

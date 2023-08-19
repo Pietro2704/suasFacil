@@ -1,5 +1,5 @@
 <?php
-include_once "comandos_SQL.php"; // Chama o arquivo onde as funções com comandos sql foram estabelecidos
+require_once "comandos_SQL.php"; // Chama o arquivo onde as funções com comandos sql foram estabelecidos
 
 if (isset($_GET['id'])) { // Se o ID do usuário foi fornecido
 

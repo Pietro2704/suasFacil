@@ -1,5 +1,6 @@
 <?php 
 require_once "conexao.php"; // Chama o arquivo onde a função de conexao ao banco foi estabelecida
+require_once "comandos_SQL.php"; // Chama o arquivo onde as funções com comandos sql foram estabelecidos
 require_once "api.php"; // Chama o arquivo onde a função de obter hora atual foi estabelecida
 ?>
 
@@ -46,24 +47,6 @@ require_once "api.php"; // Chama o arquivo onde a função de obter hora atual f
 
 <?php
 
-function esqueciSenha($username,$email){ // Função de esqueci senha precisa receber um usuario e um email
-
-  $conn = conectarBanco(); // Conecta ao banco
-  $sql = "select * from usuarios where usuario = '$username' and email = '$email' "; // Comando de consulta
-  $resultado = $conn->query($sql); // Executa o comando de consulta
-
-  if ($resultado->num_rows > 0) { // Se o Banco retornar alguma linha
-    
-    $usuario = $resultado->fetch_assoc(); // Obtém os dados do usuário
-    session_start(); // Inicia uma sessão
-    $_SESSION['user_id'] = $usuario['id']; // Define o ID do usuário na sessão
-    header('Location: redefinirSenha.php'); // Redireciona para a página de redefinição de senha
-
-  }else{
-    echo "<script>alert('Dados não encontrados');</script>";
-  }
-
-}
 
 
 if(isset($_POST["submit"])){ // Quando 'submit' for clicado

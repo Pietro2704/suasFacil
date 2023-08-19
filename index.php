@@ -1,5 +1,6 @@
 <?php 
 require_once "conexao.php"; // Chama o arquivo onde a função de conexao ao banco foi estabelecida
+require_once "comandos_SQL.php"; // Chama o arquivo onde as funções com comandos sql foram estabelecidos
 require_once "api.php"; // Chama o arquivo onde a função de obter hora atual foi estabelecida
 ?>
 
@@ -57,35 +58,6 @@ require_once "api.php"; // Chama o arquivo onde a função de obter hora atual f
 
 <?php
 
-function criarUsuario($newusername,$newpassword,$email){ // Função para o Cadastro precisa receber um usuario, senha e um email
-
-  $conn = conectarBanco(); // Conecta ao banco
-  $sql = "select * from usuarios where email = '$email'"; // Comando de consulta para verificar se usuário ja existe
-  $resultado = $conn->query($sql); // Executa o comando de consulta
-
-  if ($resultado->num_rows > 0){ // Se o Banco retornar alguma linha
-
-    echo "<script>alert('usuario ja cadastrado');</script>"; // Alerta que usuario ja existe
-
-  }else{ // Senão
-
-    $sql = "insert into usuarios(usuario,senha,email) values('$newusername','$newpassword','$email' )"; // Comando de inserção
-    $resultado = $conn->query($sql); // Executa o comando de inserção
-
-    if($resultado){ // Se a inserção foi bem-sucedida
-
-      echo "<script>alert('Usuario criado com sucesso')</script>"; // Alerta que usuario foi criado
-      echo "<script>window.location = 'login.php';</script>"; // Redireciona para a página dos usuarios
-
-    }else{ // Senão
-
-      die("erro".mysql_connect_error()); // Encerra a execução do script e exibe a mensagem de erro
-
-    } 
-  }
-}
-
-
 if(isset($_POST["submit"])){ // Quando 'submit' for clicado
 
   $newusername = $_POST ["newusername"]; // Obtém o valor do campo 'newusername' do formulário
@@ -104,4 +76,5 @@ if(isset($_POST["submit"])){ // Quando 'submit' for clicado
   criarUsuario($newusername, $newpassword, $email); // Cria o usuario
 
 }
+
 ?>

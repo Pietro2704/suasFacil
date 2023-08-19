@@ -1,8 +1,8 @@
 <?php
 
 function obterHoraAtual() { // Função para obter hora atual
-    
-    $apiUrl = "http://worldtimeapi.org/api/timezone/America/Sao_Paulo"; // URL da API para obter a hora atual da zona de fuso horário "America/Sao_Paulo"
+
+    $apiUrl = "http://worldtimeapi.org/api/ip";
     
     $response = file_get_contents($apiUrl); // função file_get_contents() é usada para fazer uma solicitação GET à URL da API
     

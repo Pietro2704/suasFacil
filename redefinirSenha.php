@@ -1,6 +1,6 @@
 <?php 
 require_once "conexao.php"; // Chama o arquivo onde a função de conexao ao banco foi estabelecida
-include_once "comandos_SQL.php"; // Chama o arquivo onde as funções com comandos sql foram estabelecidos
+require_once "comandos_SQL.php"; // Chama o arquivo onde as funções com comandos sql foram estabelecidos
 require_once "api.php"; // Chama o arquivo onde a função de obter hora atual foi estabelecida
 
 session_start(); // Inicia a sessão
@@ -60,25 +60,7 @@ $usuarioLogado = buscarUsuario($user_id); // Busca as informações do usuário 
 
 <?php
 
-function redefinirSenha($newpassword,$usuario_id){ // Função para redefinir senha precisa de uma senha e um id de usuario
 
-  $conn = conectarBanco(); // Conecta ao banco
-  $sql = "update usuarios set senha = '$newpassword' where id = '$usuario_id'"; // Comando de atualização
-  $resultado = $conn->query($sql); // Executa o comando 
-  
-  if ($resultado) { // Se o Banco retornar alguma linha
-
-    session_destroy();
-    echo "<script>alert('Dados atualizados com sucesso!!');</script>"; // exibe um alerta de sucesso
-    echo "<script>window.location = 'login.php';</script>"; // Redireciona para o login
-
-  }else{ // Senão
-
-    echo "<script>alert('Usuario ou senha incorretos');</script>"; // Alerta que não encontrou o usuario
-
-  }
-
-}
 
 
 if(isset($_POST["submit"])){ // Quando 'submit' for clicado
