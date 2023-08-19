@@ -1,19 +1,19 @@
 <?php
-require_once "comandos_SQL.php"; // Chama o arquivo onde as funções com comandos sql foram estabelecidos
+require_once "comandos_SQL.php";
 
-if (isset($_GET['id'])) { // Se o ID do usuário foi fornecido
+if (isset($_GET['id'])) {
 
-    $id = $_GET['id']; // Variavel ID é o id passado pela URL
-    $usuario = buscarUsuario($id); // Obter os dados do usuário pelo ID
+    $id = $_GET['id'];
+    $usuario = buscarUsuario($id);
 
-    if (!$usuario) { // Se o usuário não existe
+    if (!$usuario) {
 
-        die("usuario inexistente"); // Encerra a execução do script e exibe a mensagem de erro 
+      die("usuario inexistente");
         
-    }else{ // Senão
+    }else{
 
-        excluirUsuario($id); // Exclui usuario no banco de dados
-        echo "<script>window.location = 'adm.php';</script>"; 
+      excluirUsuario($id);
+      echo "<script>window.location = 'adm.php';</script>"; 
 
     }
 }

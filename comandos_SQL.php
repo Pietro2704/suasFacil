@@ -1,112 +1,112 @@
 <?php
-require_once "conexao.php"; // Chama o arquivo onde a função de conexao ao banco foi estabelecida
+require_once "conexao.php";
 
-function criarUsuario($newusername,$newpassword,$email){ // Função para o Cadastro precisa receber um usuario, senha e um email
+function criarUsuario($newusername,$newpassword,$email){
 
-    $conn = conectarBanco(); // Conecta ao banco
-    $sql = "select * from usuarios where email = '$email'"; // Comando de consulta para verificar se usuário ja existe
-    $resultado = $conn->query($sql); // Executa o comando de consulta
+    $conn = conectarBanco();
+    $sql = "select * from usuarios where email = '$email'";
+    $resultado = $conn->query($sql);
 
-    if ($resultado->num_rows > 0){ // Se o Banco retornar alguma linha
+    if ($resultado->num_rows > 0){
 
-        echo "<script>alert('usuario ja cadastrado');</script>"; // Alerta que usuario ja existe
+        echo "<script>alert('usuario ja cadastrado');</script>";
 
-    }else{ // Senão
+    }else{
 
-        $sql = "insert into usuarios(usuario,senha,email) values('$newusername','$newpassword','$email' )"; // Comando de inserção
-        $resultado = $conn->query($sql); // Executa o comando de inserção
+        $sql = "insert into usuarios(usuario,senha,email) values('$newusername','$newpassword','$email' )";
+        $resultado = $conn->query($sql);
 
-        if($resultado){ // Se a inserção foi bem-sucedida
+        if($resultado){
 
-        echo "<script>alert('Usuario criado com sucesso')</script>"; // Alerta que usuario foi criado
-        echo "<script>window.location = 'login.php';</script>"; // Redireciona para a página dos usuarios
+        echo "<script>alert('Usuario criado com sucesso')</script>";
+        echo "<script>window.location = 'login.php';</script>";
 
-        }else{ // Senão
+        }else{
 
-        die("erro".mysql_connect_error()); // Encerra a execução do script e exibe a mensagem de erro
+        die("erro".mysql_connect_error());
 
         } 
     }
 }
 
-function autenticarUsuario($email,$password){ // Função para o Login precisa receber um usuario e uma senha
+function autenticarUsuario($email,$password){
 
-    $conn = conectarBanco(); // Conecta ao banco
-    $sql = "select * from usuarios where email = '$email' and senha = '$password' "; // Comando de consulta
-    $resultado = $conn->query($sql); // Executa o comando de consulta
+    $conn = conectarBanco();
+    $sql = "select * from usuarios where email = '$email' and senha = '$password' ";
+    $resultado = $conn->query($sql);
     
-    if ($resultado->num_rows > 0) { // Se o Banco retornar alguma linha
+    if ($resultado->num_rows > 0) {
   
-      $usuario = $resultado->fetch_assoc(); // Obtém os dados do usuário
+      $usuario = $resultado->fetch_assoc();
 
-      session_start(); // Inicia uma sessão
-      $_SESSION['user_id'] = $usuario['id']; // Define o ID do usuário na sessão
+      session_start();
+      $_SESSION['user_id'] = $usuario['id'];
       
-      header('Location: perfil.php'); // Redireciona para a página dos usuarios
+      header('Location: perfil.php');
   
-    }else{ // Senão
+    }else{
   
-      echo "<script>alert('Usuario ou senha incorretos');</script>"; // Alerta que não encontrou o usuario
+      echo "<script>alert('Usuario ou senha incorretos');</script>";
   
     }
 }
 
-function buscarUsuario($id) { // Função para buscar um usuário específico pelo ID
+function buscarUsuario($id) {
 
-    $conn = conectarBanco(); // Conecta ao banco
-    $sql = "SELECT * FROM usuarios WHERE id = '$id'"; // Comando de consulta
-    $usuario = $conn->query($sql); // Executa o comando de consulta
+    $conn = conectarBanco();
+    $sql = "SELECT * FROM usuarios WHERE id = '$id'";
+    $usuario = $conn->query($sql);
     
-    if ($usuario->num_rows > 0) { // Se o usuário com o ID especificado foi encontrado
-        return $usuario->fetch_assoc(); // Retorna os dados do usuário como um array associativo
+    if ($usuario->num_rows > 0) {
+        return $usuario->fetch_assoc();
     }
     
-    $conn->close(); // Fecha a conexão com o banco de dados
-    return null; // Se nenhum usuário com o ID especificado for encontrado, retorna null
+    $conn->close();
+    return null;
 }
 
-function atualizarUsuario($id, $usuario, $senha){ // Função para atualizar um usuário específico
+function atualizarUsuario($id, $usuario, $senha){
 
-    $conn = conectarBanco(); // Conecta ao banco
-    $sql = "update usuarios set usuario = ?, senha = ? where id = ?"; // Comando de atualização
+    $conn = conectarBanco();
+    $sql = "update usuarios set usuario = ?, senha = ? where id = ?";
 
-    $smt = $conn->prepare($sql); // Prepara o comando para a execução
-    $smt->bind_param('ssi', $usuario, $senha, $id); // Associa valores aos parâmetros na consulta SQL preparada
+    $smt = $conn->prepare($sql);
+    $smt->bind_param('ssi', $usuario, $senha, $id);
 
-    if ($smt->execute()) {  // Se a atualização for bem-sucedida
+    if ($smt->execute()) { 
 
-        echo "<script>alert('Dados atualizados com sucesso');</script>"; // exibe um alerta de sucesso
+        echo "<script>alert('Dados atualizados com sucesso');</script>";
 
-    } else { // Senão
+    } else {
 
-        echo "<script>alert('ERRO AO ATUALIZAR');</script>" . mysqli_error($conn); // exibe um alerta de erro
+        echo "<script>alert('ERRO AO ATUALIZAR');</script>" . mysqli_error($conn);
 
     }
 }
 
-function getUsuarios(){ // Função para pegar todos os valores da tabela
+function getUsuarios(){
 
-    $conn = conectarBanco(); // Conecta ao banco
-    $sql = "select * from usuarios"; // Comando de consulta
-    $usuarios = $conn->query($sql); // Executa o comando de consulta
+    $conn = conectarBanco();
+    $sql = "select * from usuarios";
+    $usuarios = $conn->query($sql);
 
-    $conn->close(); // Fecha a conexão com o banco de dados
+    $conn->close();
 
-    return $usuarios; // Retorna o resultado da consulta
+    return $usuarios;
 }
 
-function esqueciSenha($username,$email){ // Função de esqueci senha precisa receber um usuario e um email
+function esqueciSenha($username,$email){
 
-    $conn = conectarBanco(); // Conecta ao banco
-    $sql = "select * from usuarios where usuario = '$username' and email = '$email' "; // Comando de consulta
-    $resultado = $conn->query($sql); // Executa o comando de consulta
+    $conn = conectarBanco();
+    $sql = "select * from usuarios where usuario = '$username' and email = '$email' ";
+    $resultado = $conn->query($sql);
   
-    if ($resultado->num_rows > 0) { // Se o Banco retornar alguma linha
+    if ($resultado->num_rows > 0) {
       
-      $usuario = $resultado->fetch_assoc(); // Obtém os dados do usuário
-      session_start(); // Inicia uma sessão
-      $_SESSION['user_id'] = $usuario['id']; // Define o ID do usuário na sessão
-      header('Location: redefinirSenha.php'); // Redireciona para a página de redefinição de senha
+      $usuario = $resultado->fetch_assoc();
+      session_start();
+      $_SESSION['user_id'] = $usuario['id'];
+      header('Location: redefinirSenha.php');
   
     }else{
       echo "<script>alert('Dados não encontrados');</script>";
@@ -114,41 +114,41 @@ function esqueciSenha($username,$email){ // Função de esqueci senha precisa re
   
 }
   
-function redefinirSenha($newpassword,$usuario_id){ // Função para redefinir senha precisa de uma senha e um id de usuario
+function redefinirSenha($newpassword,$usuario_id){
 
-    $conn = conectarBanco(); // Conecta ao banco
-    $sql = "update usuarios set senha = '$newpassword' where id = '$usuario_id'"; // Comando de atualização
-    $resultado = $conn->query($sql); // Executa o comando 
+    $conn = conectarBanco();
+    $sql = "update usuarios set senha = '$newpassword' where id = '$usuario_id'";
+    $resultado = $conn->query($sql);
     
-    if ($resultado) { // Se o Banco retornar alguma linha
+    if ($resultado) {
   
       session_destroy();
-      echo "<script>alert('Dados atualizados com sucesso!!');</script>"; // exibe um alerta de sucesso
-      echo "<script>window.location = 'login.php';</script>"; // Redireciona para o login
+      echo "<script>alert('Dados atualizados com sucesso!!');</script>";
+      echo "<script>window.location = 'login.php';</script>";
   
-    }else{ // Senão
+    }else{
   
-      echo "<script>alert('Usuario ou senha incorretos');</script>"; // Alerta que não encontrou o usuario
+      echo "<script>alert('Usuario ou senha incorretos');</script>";
   
     }
   
 }
 
-function excluirUsuario($id){ // Função para excluir um usuário específico
+function excluirUsuario($id){
 
-    $conn = conectarBanco(); // Conecta ao banco
-    $sql = "delete from usuarios where id = ?"; // Comando para deletar
+    $conn = conectarBanco();
+    $sql = "delete from usuarios where id = ?";
 
-    $smt = $conn->prepare($sql); // Prepara o comando para a execução
-    $smt->bind_param("i", $id); // Associa valores aos parâmetros na consulta SQL preparada
+    $smt = $conn->prepare($sql);
+    $smt->bind_param("i", $id);
 
-    if ($smt->execute()) { // Se a atualização for bem-sucedida
+    if ($smt->execute()) {
 
-        echo "<script>alert('Usuario excluido');</script>"; // exibe um alerta de sucesso
+        echo "<script>alert('Usuario excluido');</script>";
 
     } else {
 
-        echo "<script>alert('ERRO AO EXCLUIR');</script>"; // exibe um alerta de erro
+        echo "<script>alert('ERRO AO EXCLUIR');</script>";
         
     }
 }
@@ -166,7 +166,5 @@ function Truncate(){
         echo "<script>alert('Ocorreu um erro ao apagar os usuários.');</script>";
     }
 }
-
-
 
 ?>

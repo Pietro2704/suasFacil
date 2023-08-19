@@ -1,22 +1,22 @@
 <?php
-require_once "comandos_SQL.php"; // Chama o arquivo onde as funções com comandos sql foram estabelecidos
+require_once "comandos_SQL.php";
 
-if (isset($_GET['id'])) { // Se o ID do usuário foi fornecido
+if (isset($_GET['id'])) {
 
-    $id = $_GET['id']; // Variavel ID é o id passado pela URL
-    $usuario = buscarUsuario($id); // Obter os dados do usuário pelo ID
+    $id = $_GET['id'];
+    $usuario = buscarUsuario($id);
 
-    if (!$usuario) { // Se o usuário não existe
+    if (!$usuario) {
 
-        echo "<script>alert('Usuário não encontrado.');</script>"; // exibe um alerta de erro
-        exit(); // Encerra a execução do script
+        echo "<script>alert('Usuário não encontrado.');</script>";
+        exit();
 
     }
 
 }else{
 
-    echo "<script>alert('ID do usuário não fornecido.');</script>"; // exibe um alerta de erro
-    exit(); // Encerra a execução do script
+    echo "<script>alert('ID do usuário não fornecido.');</script>";
+    exit();
 
 }
 ?>
@@ -55,7 +55,7 @@ if (isset($_GET['id'])) { // Se o ID do usuário foi fornecido
                     value="<?php echo $usuario['senha']; ?>">
             </div>
 
-            <button type="submit" class="btn btn-primary">Salvar</button>
+            <button type="submit" name="submit" class="btn btn-primary">Salvar</button>
 
         </form>
     </div>
@@ -63,14 +63,14 @@ if (isset($_GET['id'])) { // Se o ID do usuário foi fornecido
 </body>
 </html>
 <?php 
-if ($_SERVER["REQUEST_METHOD"] == "POST") { // Se o formulário foi enviado
+if (isset($_POST['submit'])) {
         
-    $usuario = $_POST["usuario"]; // Obtém o valor do campo 'usuario' do formulário
-    $senha = $_POST["password"]; // Obtém o valor do campo 'password' do formulário
+    $usuario = $_POST["usuario"];
+    $senha = $_POST["password"];
     
-    atualizarUsuario($id, $usuario, $senha); // Atualizar os dados do usuário no banco de dados
+    atualizarUsuario($id, $usuario, $senha);
     
-    echo "<script>window.location = 'perfil.php';</script>"; // Redirecionar para a página de listagem de usuários
-    exit(); // Encerra a execução do script
+    echo "<script>window.location = 'perfil.php';</script>";
+    exit();
 }
 ?>

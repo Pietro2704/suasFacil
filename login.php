@@ -1,7 +1,7 @@
 <?php
-require_once "conexao.php"; // Chama o arquivo onde a função de conexao ao banco foi estabelecida
-require_once "comandos_SQL.php"; // Chama o arquivo onde as funções com comandos sql foram estabelecidos
-require_once "api.php"; // Chama o arquivo onde a função de obter hora atual foi estabelecida
+require_once "conexao.php";
+require_once "comandos_SQL.php";
+require_once "api.php";
 ?>
 
 <!DOCTYPE html>
@@ -57,12 +57,12 @@ require_once "api.php"; // Chama o arquivo onde a função de obter hora atual f
 
 <?php
 
-if(isset($_POST["submit"])){ // Quando 'submit' for clicado
+if(isset($_POST["submit"])){
 
-  $email = $_POST["email"]; // Obtém o valor do campo 'username' do formulário
-  $password = $_POST["password"]; // Obtém o valor do campo 'password' do formulário
+  $email = $_POST["email"];
+  $password = $_POST["password"];
 
-  autenticarUsuario($email,$password); // Chama a função passando os valores do usuário e senha como argumentos
+  autenticarUsuario($email,$password);
 
 }
 

@@ -19,14 +19,13 @@ $usuarios = getUsuarios();
     <title>Todos usuarios</title>
 </head>
 <body>
+
   <div class="container">
     <p>Seja bem-vindo</p>
     <div class="relogio"  >
       <div id="hora" class= "mb-4"><?php echo obterHoraAtual(); ?></div>
     </div>
     <h2>Todos os Usuários:</h2>
-
-    
 
     <table class="table table-bordered">
       <thead class="thead-dark">

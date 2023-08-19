@@ -1,28 +1,26 @@
 <?php
 
-function obterHoraAtual() { // Função para obter hora atual
+function obterHoraAtual() {
 
     $apiUrl = "http://worldtimeapi.org/api/ip";
     
-    $response = file_get_contents($apiUrl); // função file_get_contents() é usada para fazer uma solicitação GET à URL da API
+    $response = file_get_contents($apiUrl);
     
-    $data = json_decode($response, true); // função json_decode() é usada para decodificar o JSON contido na variável 'response'
-    // O 'true' faz com que o JSON seja decodificado em um array associativo
-
+    $data = json_decode($response, true);
     
-    if (isset($data['datetime'])) { // Se o campo 'datetime' existe no array
+    if (isset($data['datetime'])) {
 
-        $dateTime = new DateTime($data['datetime']); // Cria um objeto DateTime com base no valor 'datetime' da resposta
+        $dateTime = new DateTime($data['datetime']);
         
-        $hora = $dateTime->format('H'); // Obtém hora do objeto DateTime
-        $minuto = $dateTime->format('i'); // Obtém minuto do objeto DateTime
-        $segundo = $dateTime->format('s'); // Obtém segundo do objeto DateTime   
+        $hora = $dateTime->format('H');
+        $minuto = $dateTime->format('i');
+        $segundo = $dateTime->format('s');
         
-        return "Hora atual: $hora : $minuto : $segundo"; // Retorna uma string formatada com a hora, minuto e segundo
+        return "Hora atual: $hora : $minuto : $segundo";
 
-    } else { // Senão
+    } else {
         
-        return "Não foi possível obter a hora atual."; // Retorna uma mensagem de erro caso 'datetime' não exista na resposta
+        return "Não foi possível obter a hora atual.";
 
     }
 }

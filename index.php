@@ -1,7 +1,7 @@
 <?php 
-require_once "conexao.php"; // Chama o arquivo onde a função de conexao ao banco foi estabelecida
-require_once "comandos_SQL.php"; // Chama o arquivo onde as funções com comandos sql foram estabelecidos
-require_once "api.php"; // Chama o arquivo onde a função de obter hora atual foi estabelecida
+require_once "conexao.php";
+require_once "comandos_SQL.php";
+require_once "api.php";
 ?>
 
 <!DOCTYPE html>
@@ -58,22 +58,22 @@ require_once "api.php"; // Chama o arquivo onde a função de obter hora atual f
 
 <?php
 
-if(isset($_POST["submit"])){ // Quando 'submit' for clicado
+if(isset($_POST["submit"])){
 
-  $newusername = $_POST ["newusername"]; // Obtém o valor do campo 'newusername' do formulário
-  $email = $_POST["email"]; // Obtém o valor do campo 'email' do formulário
+  $newusername = $_POST ["newusername"];
+  $email = $_POST["email"];
 
-  $newpassword = $_POST ["newpassword"]; // Obtém o valor do campo 'newpassword' do formulário
-  $confirm_password = $_POST["confirm_password"]; // Obtém o valor do campo 'confirm_password' do formulário
+  $newpassword = $_POST ["newpassword"];
+  $confirm_password = $_POST["confirm_password"];
   
-  if ($newpassword !== $confirm_password) { // Se senha e confirmação de senha não coincidem
+  if ($newpassword !== $confirm_password) {
 
-    echo "<script>alert('A senha e a confirmação de senha não coincidem. Por favor, tente novamente.');</script>"; // exibe mensagem de erro
-    exit(); // Encerra a execução do script
+    echo "<script>alert('A senha e a confirmação de senha não coincidem. Por favor, tente novamente.');</script>";
+    exit();
 
   }
   
-  criarUsuario($newusername, $newpassword, $email); // Cria o usuario
+  criarUsuario($newusername, $newpassword, $email);
 
 }
 

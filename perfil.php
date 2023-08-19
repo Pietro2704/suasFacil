@@ -1,19 +1,19 @@
 <?php
-require_once "conexao.php"; // Chama o arquivo onde a função de conexao ao banco foi estabelecida
-require_once "comandos_SQL.php"; // Chama o arquivo onde as funções com comandos sql foram estabelecidos
-require_once "api.php"; // Chama o arquivo onde a função de obter hora atual foi estabelecida
+require_once "conexao.php";
+require_once "comandos_SQL.php";
+require_once "api.php";
 
-session_start(); // Inicia a sessão
+session_start();
 
-if (!isset($_SESSION['user_id'])) { // Caso o usuário não esteja autenticado
+if (!isset($_SESSION['user_id'])) {
     
-    header('Location: login.php'); // Redireciona para o login
-    exit(); // Encerra a execução do script
+    header('Location: login.php');
+    exit();
 
 }
 
-$user_id = $_SESSION['user_id']; // Obtém o ID do usuário logado a partir da sessão
-$usuarioLogado = buscarUsuario($user_id); // Busca as informações do usuário logado usando a função buscarUsuario 
+$user_id = $_SESSION['user_id'];
+$usuarioLogado = buscarUsuario($user_id);
 
 ?>
 

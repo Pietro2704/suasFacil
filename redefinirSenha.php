@@ -1,19 +1,19 @@
 <?php 
-require_once "conexao.php"; // Chama o arquivo onde a função de conexao ao banco foi estabelecida
-require_once "comandos_SQL.php"; // Chama o arquivo onde as funções com comandos sql foram estabelecidos
-require_once "api.php"; // Chama o arquivo onde a função de obter hora atual foi estabelecida
+require_once "conexao.php";
+require_once "comandos_SQL.php";
+require_once "api.php";
 
-session_start(); // Inicia a sessão
+session_start();
 
-if (!isset($_SESSION['user_id'])) { // Caso o usuário não esteja autenticado
+if (!isset($_SESSION['user_id'])) {
     
-    header('Location: login.php'); // Redireciona para o login
-    exit(); // Encerra a execução do script
+    header('Location: login.php');
+    exit();
 
 }
 
-$user_id = $_SESSION['user_id']; // Obtém o ID do usuário logado a partir da sessão
-$usuarioLogado = buscarUsuario($user_id); // Busca as informações do usuário logado usando a função buscarUsuario 
+$user_id = $_SESSION['user_id'];
+$usuarioLogado = buscarUsuario($user_id);
 
 ?>
 
@@ -63,21 +63,21 @@ $usuarioLogado = buscarUsuario($user_id); // Busca as informações do usuário 
 
 
 
-if(isset($_POST["submit"])){ // Quando 'submit' for clicado
+if(isset($_POST["submit"])){
 
   $usuario_id = $usuarioLogado['id'];
 
-  $newpassword = $_POST ["newpassword"]; // Obtém o valor do campo 'newpassword' do formulário
-  $confirm_password = $_POST["confirm_password"]; // Obtém o valor do campo 'confirm_password' do formulário
+  $newpassword = $_POST ["newpassword"];
+  $confirm_password = $_POST["confirm_password"];
   
-  if ($newpassword !== $confirm_password) { // Se senha e confirmação de senha não coincidem
+  if ($newpassword !== $confirm_password) {
 
-    echo "<script>alert('A senha e a confirmação de senha não coincidem. Por favor, tente novamente.');</script>"; // exibe mensagem de erro
-    exit(); // Encerra a execução do script
+    echo "<script>alert('A senha e a confirmação de senha não coincidem. Por favor, tente novamente.');</script>";
+    exit();
 
   }
 
-  redefinirSenha($newpassword,$usuario_id); // Atualiza senha
+  redefinirSenha($newpassword,$usuario_id);
 
 }
 ?>
